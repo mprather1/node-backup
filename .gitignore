@@ -1,0 +1,15 @@
+/node_modules
+/.next
+/bak
+*.log
+/dist
+/test.js
+/test.sql
+/data
+/uploads/*
+/log/*
+/config/env/production.env
+/coverage
+/shintech*
+/static/files/*
+/config.json
