@@ -12,7 +12,10 @@ const HOST = config.HOST
 const USERNAME = config.USERNAME
 const RSA = config.RSA
 
-const logger = new Shlogger()
+const logger = new Shlogger({
+  directory: process.env['LOG_DIR']
+})
+
 var conn = new Client()
 
 conn.connect({
