@@ -13,3 +13,4 @@
 /shintech*
 /static/files/*
 /config.json
+/run.sh
