@@ -2,19 +2,32 @@
 
 const fs = require('fs')
 const path = require('path')
+const program = require("commander")
 const Shlogger = require('shlogger')
 var { Client } = require('ssh2')
-const config = require('./config.json')
 
-const SOURCE = config.SOURCE
-const OUTPUT = config.OUTPUT
-const HOST = config.HOST
-const USERNAME = config.USERNAME
-const RSA = config.RSA
+program
+  .option('-l, --log <dir>', 'location of log directory [optional]')
+  .option('-s, --remote <dir>', 'location of remote source directory')
+  .option('-o, --output <dir>', 'location of output directory')
+  .option('-u, --username <name>', 'remote login username')
+  .option('-k, --key <dir>', 'location of private key')
+  .option('-r --host <ip>', 'IP address of remote host')
+  .parse(process.argv)
 
-const logger = new Shlogger({
-  directory: process.env['LOG_DIR']
-})
+const SOURCE = program.remote
+const OUTPUT = program.output
+const HOST = program.host
+const USERNAME = program.username
+const KEY = program.key
+
+if (!SOURCE) { throw new Error('Remote directory is required...') }
+if (!OUTPUT) { throw new Error('Output directory is required...') }
+if (!USERNAME) { throw new Error('Login username is required...') }
+if (!KEY) { throw new Error('Location of private key is required...') }
+if (!HOST) { throw new Error('Remote Host is required...') }
+
+const logger = new Shlogger({ directory: program.log })
 
 var conn = new Client()
 
@@ -22,7 +35,7 @@ conn.connect({
   host: HOST,
   port: 22,
   username: USERNAME,
-  privateKey: require('fs').readFileSync(RSA)
+  privateKey: require('fs').readFileSync(KEY)
 })
 
 conn.on('ready', function () {
