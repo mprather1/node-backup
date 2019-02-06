@@ -5,6 +5,7 @@ const path = require('path')
 const program = require("commander")
 const Shlogger = require('shlogger')
 var { Client } = require('ssh2')
+require('dotenv').config()
 
 program
   .option('-l, --log <dir>', 'location of log directory [optional]')
@@ -15,11 +16,12 @@ program
   .option('-r --host <ip>', 'IP address of remote host')
   .parse(process.argv)
 
-const SOURCE = program.remote
-const OUTPUT = program.output
-const HOST = program.host
-const USERNAME = program.username
-const KEY = program.key
+const LOG = path.resolve(program.log || process.env['LOG'])
+const SOURCE = program.remote || process.env['SOURCE']
+const OUTPUT = program.output || process.env["OUTPUT"]
+const HOST = program.host || process.env['HOST']
+const USERNAME = program.username || process.env['USERNAME']
+const KEY = program.key || process.env['KEY']
 
 if (!SOURCE) { throw new Error('Remote directory is required...') }
 if (!OUTPUT) { throw new Error('Output directory is required...') }
@@ -27,7 +29,7 @@ if (!USERNAME) { throw new Error('Login username is required...') }
 if (!KEY) { throw new Error('Location of private key is required...') }
 if (!HOST) { throw new Error('Remote Host is required...') }
 
-const logger = new Shlogger({ directory: program.log })
+const logger = new Shlogger({ directory: LOG })
 
 var conn = new Client()
 

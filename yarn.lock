@@ -93,6 +93,11 @@ diagnostics@^1.1.1:
     enabled "1.0.x"
     kuler "1.0.x"
 
+dotenv@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
+  integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
+
 enabled@1.0.x:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/enabled/-/enabled-1.0.2.tgz#965f6513d2c2d1c5f4652b64a2e3396467fc2f93"
@@ -205,10 +210,10 @@ safer-buffer@~2.1.0:
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-shlogger@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/shlogger/-/shlogger-0.0.6.tgz#81db46e6b9c8237fd81992df019ad43a4524fa5d"
-  integrity sha512-tU/DiRb5ElJW26lsuv/NLdtFQEG/N4CzwqlFsa6GD6giua5rRc1ZaJ55QFgki2pxkZC2ojLj+RVel0FV8iAHAQ==
+shlogger@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/shlogger/-/shlogger-0.0.9.tgz#3fa16e912c6537f8ee9ddd12f252eb7340d857c7"
+  integrity sha512-ZjoGbZgxHjOysNdAgWUtnTzY0vWn8mA6TPl70Yfs72zlAU2ZuGFrT4XS6pFumxyLv9qeb6oG4kJJ0T5w7AW5bA==
 
 simple-swizzle@^0.2.2:
   version "0.2.2"
