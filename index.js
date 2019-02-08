@@ -2,7 +2,7 @@
 
 const fs = require('fs')
 const path = require('path')
-const program = require("commander")
+const program = require('commander')
 const Shlogger = require('shlogger')
 var { Client } = require('ssh2')
 require('dotenv').config()
@@ -18,7 +18,7 @@ program
 
 const LOG = path.resolve(program.log || process.env['LOG'])
 const SOURCE = program.remote || process.env['SOURCE']
-const OUTPUT = program.output || process.env["OUTPUT"]
+const OUTPUT = program.output || process.env['OUTPUT']
 const HOST = program.host || process.env['HOST']
 const USERNAME = program.username || process.env['USERNAME']
 const KEY = program.key || process.env['KEY']
@@ -43,7 +43,13 @@ conn.connect({
 conn.on('ready', function () {
   conn.exec(`tar -zcvf - ${SOURCE}/*`, function (err, stream) {
     if (err) { return logger.error(err) }
-    const filename = `${new Date().toISOString()}-backup.tar.gz`
+
+    const d = new Date()
+    const mm = d.getMonth() + 1
+    const dd = d.getDate()
+    const yyyy = d.getFullYear()
+
+    const filename = `${mm}-${dd}-${yyyy}-backup.tar.gz`
     const output = fs.createWriteStream(path.join(OUTPUT, filename))
 
     stream.pipe(output)
